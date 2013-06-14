@@ -1,0 +1,20 @@
+<h5>Reviews ...</h5><br />
+
+<% @post.each do |post| %>
+
+  <dl>
+    <dt> <%= post.title %></dt>
+    <dd> <%= post.description %></dd>
+  </dl>
+  <div class="muted">Posted by <%= post.user.username %> on <%= post.created_at %></div>
+  <br />
+
+  <small> <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-link' %> 
+  </small> |
+  <small> <%= link_to 'Comment', post_path(post), class: 'btn btn-link' %> 
+  </small>
+  <hr />
+
+<% end %>
+
+
