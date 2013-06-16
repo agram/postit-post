@@ -29,13 +29,13 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @post.comments << @comment
 
-    @comment.user_id = 2
+    @comment.user_id = 4
 
     if @comment.save
       flash[:notice] = 'Success! Comment added.'
       redirect_to post_path(@post)
     else
-      render :index
+      render 'posts/show'
     end
   end
 

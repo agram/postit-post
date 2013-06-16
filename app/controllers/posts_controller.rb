@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   def show # Done
     @post= Post.find(params[:id])
     @comment = Comment.new
+    # binding.pry
   end
 
   def new # Done
