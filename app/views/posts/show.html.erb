@@ -3,6 +3,8 @@
 
 <p> <%= @post.description %> </p>
 
-<small class="muted"> <%= @post.url %></small> <hr />
+<small class="muted">
+  <%= link_to @post.url %> 
+</small> <hr />
 
 <%= render 'comments/comment_form' %>

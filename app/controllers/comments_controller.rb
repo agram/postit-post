@@ -10,18 +10,19 @@ class CommentsController < ApplicationController
   # POST /posts/:post_id/comments
   def create
     # binding.pry
-    @comment = Comment.new(params[:comment])
     @post = Post.find(params[:post_id])
-    @post.comments << @comment
+    @comment = @post.comments.build(params[:comment])
+    # Above @comment is equivalent to below code snippets
+    # @comment = Comment.new(params[:comment])
+    # @post.comments << @comment
 
-    @comment.user_id = 4
+    @comment.user_id = 3  # TODO: fix after authentication
 
     if @comment.save
-      flash[:notice] = 'Success! Comment added.'
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), notice: "Your comment was added."
     else
       render 'posts/show'
     end
   end
-  
+
 end

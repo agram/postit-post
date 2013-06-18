@@ -1,20 +1,14 @@
-<% if @comment.errors.any? %>
-<ul>
-    <% @comment.errors.full_messages.each do |msg| %>
-      <li> <%= msg %> </li>
-    <% end %>
-</ul>
-<% end %>
+<%= render 'shared/errors', obj: @comment %>
 
 <%= form_for [@post, @comment] do |f| %>
   <div class="control-group">
       <%= f.label :body, 'Leave a comment' %>
     <br />
-    <div class="input-prepend">
-      <span class="add-on"><i class="icon-pencil"></i></span>
-    <%= f.text_field :body, class: 'input-xxlarge', placeholder: 'Write a comment...' %>
-  </div>
-    <br />
+    <div class="controls">
+      <div class="input-prepend">
+        <%= f.text_area :body, rows: '3', class: 'span4', placeholder: 'Write a comment...' %>
+      </div>
+    </div>
     <%= f.submit 'Post comment', class: 'btn btn-primary' %>
   </div>
 <% end %>
@@ -25,7 +19,7 @@
 </h5>
 
 <!-- Show Comments Associated to post -->
-<% @post.comments.each do |comment| %>
+<% @post.comments.order("created_at DESC").each do |comment| %>
   <hr />
 <div class="controls">
   <ul class="unstyled">

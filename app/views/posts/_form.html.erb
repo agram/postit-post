@@ -1,11 +1,4 @@
-<% if @post.errors.any? %>
-  <h5>Please correct the following errors</h5>
-  <ul>
-    <% @post.errors.full_messages.each do |msg|  %>
-      <li> <%= msg %> </li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render 'shared/errors', obj: @post %>
 
 <%= form_for @post, :html => {:class => 'form-horizontal'} do |f| %>
   <div class="control-group">
