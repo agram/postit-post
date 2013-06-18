@@ -8,22 +8,22 @@
 
 <%= form_for [@post, @comment] do |f| %>
   <div class="control-group">
-      <%= f.label :Comment %>
+      <%= f.label :body, 'Leave a comment' %>
     <br />
     <div class="input-prepend">
       <span class="add-on"><i class="icon-pencil"></i></span>
     <%= f.text_field :body, class: 'input-xxlarge', placeholder: 'Write a comment...' %>
   </div>
     <br />
-    <%= f.submit class: 'btn btn-primary' %>
+    <%= f.submit 'Post comment', class: 'btn btn-primary' %>
   </div>
 <% end %>
 <br />
 
 <h5 class='text-warning'> 
-  <%= @post.comments.count %>
-   <%= @post.comments.count > 1 ? "comments" : "comment" %> 
+  Comments:
 </h5>
+
 <!-- Show Comments Associated to post -->
 <% @post.comments.each do |comment| %>
   <hr />

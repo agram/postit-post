@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
+  before_filter :find_post, only: [:show, :edit, :update]
+
   def index # Done
     @post = Post.all
   end
 
   def show # Done
-    @post= Post.find(params[:id])
     @comment = Comment.new
     # binding.pry
   end
@@ -27,12 +28,9 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
-
     if @post.update_attributes(params[:post])
       flash[:notice] = 'Post updated successfully.'
       redirect_to post_path
@@ -41,7 +39,8 @@ class PostsController < ApplicationController
     end
   end
 
-  def delete
-    
+  def find_post
+    @post= Post.find(params[:id])
   end
+
 end

@@ -7,21 +7,6 @@
 
 class CommentsController < ApplicationController
 
-  # GET /posts/:post_id/comments
-  def index
-    @comment = Comment.find(params[:post_id])
-  end
-
-  # GET /posts/:post_id/comments/:id
-  def show
-    @comment = Comment.find(params[:id])
-  end
-
-  # GET /posts/:post_id/comments/new
-  def new
-    @comment = Comment.new
-  end
-
   # POST /posts/:post_id/comments
   def create
     # binding.pry
@@ -38,14 +23,5 @@ class CommentsController < ApplicationController
       render 'posts/show'
     end
   end
-
-  # GET /posts/:post_id/comments/:id/edit  
-  def edit
-    
-  end
-
-  # PUT /posts/:post_id/comments/:id
-  def update
-    
-  end
+  
 end

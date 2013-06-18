@@ -6,13 +6,21 @@
     <dt> <%= post.title %></dt>
     <dd> <%= post.description %></dd>
   </dl>
-  <div class="muted">Posted by <%= post.user.username %> on <%= post.created_at %></div>
+  <small><div class="muted">Submitted at <%= post.created_at %> by <%= post.user.username %> to 
+      <% post.categories.each do |category| %>
+        <%= category.name %>
+      <% end %>
+    </div></small>
   <br />
 
   <small> <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-link' %> 
   </small> |
-  <small> <%= link_to 'Comment', post_path(post), class: 'btn btn-link' %> 
-  </small>
+  
+    <%= link_to post_path(post) do %>
+      <small> 
+        Comments (<%= post.comments.count %>) 
+      </small>
+    <% end %> 
   <hr />
 
 <% end %>
