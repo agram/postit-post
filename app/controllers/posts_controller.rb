@@ -18,7 +18,6 @@ class PostsController < ApplicationController
 
   def create # Done
     @post= Post.new(params[:post])
-    @category = Category.find(params[:id])
     @post.user = current_user
 
     if @post.save
