@@ -6,6 +6,7 @@
 #                   PUT  /posts/:post_id/comments/:id(.:format)      comments#update
 
 class CommentsController < ApplicationController
+  before_filter :require_user
 
   # POST /posts/:post_id/comments
   def create
@@ -16,7 +17,7 @@ class CommentsController < ApplicationController
     # @comment = Comment.new(params[:comment])
     # @post.comments << @comment
 
-    @comment.user_id = 3  # TODO: fix after authentication
+    @comment.user = current_user  # TODO: fix after authentication
 
     if @comment.save
       redirect_to post_path(@post), notice: "Your comment was added."

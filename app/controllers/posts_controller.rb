@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   before_filter :find_post, only: [:show, :edit, :update]
+  before_filter :require_user, only: [:new, :create, :update, :edit]
+  before_filter :current_user, only: [:index] # For conditionally displaying 'edit' link
 
   def index # Done
     @post = Post.all
@@ -16,8 +18,8 @@ class PostsController < ApplicationController
 
   def create # Done
     @post= Post.new(params[:post])
-
-    @post.user_id = 4
+    @category = Category.find(params[:id])
+    @post.user = current_user
 
     if @post.save
       flash[:notice] = 'Post added successfully.'
@@ -30,7 +32,7 @@ class PostsController < ApplicationController
   def edit
   end
 
-  def update
+  def update # Done
     if @post.update_attributes(params[:post])
       flash[:notice] = 'Post updated successfully.'
       redirect_to post_path

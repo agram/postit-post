@@ -2,7 +2,54 @@
   <li>
     <%= link_to "Postit!", root_path, :class => 'brand' %>
   </li>
-  <li>
-    <%= link_to 'Create Post', new_post_path %>
-  </li>
 </ul>
+<% if current_user %>
+    <li class="brand">
+      Hi, <%= current_user.username %>!
+    </li>
+<% end %>
+
+<div class="btn-group nav_item">
+  <%= link_to '#', class: "btn btn-small dropdown-toggle", 'data-toggle' => 'dropdown' do %>
+    Categories <span class="caret"></span>
+  <% end %>
+  <ul class="dropdown-menu">
+    <% Category.all.each do |category| %>
+      <li>
+        <%= link_to category.name, category_path(category)  %>
+      </li>
+    <% end %>
+
+    <% if logged_in? %>
+        <li class="divider"></li>
+      <%= link_to new_category_path do %>
+        <i class="icon-plus"></i>
+        New Category
+      <% end %>
+    <% end %>
+    
+  </ul>
+</div>
+
+
+<% if logged_in? %>
+  <div class="nav_item">
+    <%= link_to new_post_path, class: 'btn btn-info' do %>
+      <i class="icon-pencil icon-white"></i> create post
+    <% end %>
+  </div>
+
+  <div class="nav_item">
+    <%= link_to 'log out', logout_path, class: 'btn btn-danger' %>
+  </div>
+
+<% else %>
+  <div class="nav_item">
+    <%= link_to 'register', register_path, class: 'btn btn-success' %>
+  </div>
+
+  <div class="nav_item">
+    <%= link_to 'login', login_path, class: 'btn btn-inverse' %>
+  </div>
+<% end %>
+

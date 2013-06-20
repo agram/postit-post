@@ -7,4 +7,6 @@
   <%= link_to @post.url, @post.url %> 
 </small> <hr />
 
-<%= render 'comments/comment_form' %>
+<% if logged_in? %>
+  <%= render 'comments/comment_form' %>
+<% end %>
