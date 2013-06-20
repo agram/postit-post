@@ -3,24 +3,45 @@
     <%= link_to "Postit!", root_path, :class => 'brand' %>
   </li>
 </ul>
-<% if current_user %>
-    <div class="nav pull-right">   <!-- WIP -->
-      <%= link_to "#", class: "dropdown-toggle", 'data-toggle' => 'dropdown' do %>
+
+<% if logged_in? %>
+  <ul class="nav">
+    <li class="dropdown">
+      <%= link_to "#", class: "dropdown-toggle", "data-toggle" => "dropdown" do %>
         Hi, <%= current_user.username %>!
+        <b class="caret"></b>
       <% end %>
       <ul class="dropdown-menu">
         <li>
           <%= link_to edit_user_path(current_user) do %>
-            <i class="icon-plus"></i>
-            Update profile
+            <i class="icon-wrench"></i>
+            update profile
+          <% end %>
+        </li>
+        <li>
+          <%= link_to logout_path do %>
+            <i class="icon-arrow-right"></i>
+            log out
           <% end %>
         </li>
       </ul>
-    </div> <!-- WIP -->
+    </li>
+  </ul>
 
-    <ul class="nav pull-right"><li class="brand">
-          Hi, <%= current_user.username %>!
-        </li></ul>
+  <div class="nav_item">
+    <%= link_to new_post_path, class: 'btn btn-info' do %>
+      <i class="icon-pencil icon-white"></i> create post
+    <% end %>
+  </div>
+
+<% else %>
+  <div class="nav_item">
+    <%= link_to 'register', register_path, class: 'btn btn-success' %>
+  </div>
+
+  <div class="nav_item">
+    <%= link_to 'login', login_path, class: 'btn btn-inverse' %>
+  </div>
 <% end %>
 
 <div class="btn-group nav_item">
@@ -41,29 +62,6 @@
         New Category
       <% end %>
     <% end %>
-
   </ul>
 </div>
-
-
-<% if logged_in? %>
-  <div class="nav_item">
-    <%= link_to new_post_path, class: 'btn btn-info' do %>
-      <i class="icon-pencil icon-white"></i> create post
-    <% end %>
-  </div>
-
-  <div class="nav_item">
-    <%= link_to 'log out', logout_path, class: 'btn btn-danger' %>
-  </div>
-
-<% else %>
-  <div class="nav_item">
-    <%= link_to 'register', register_path, class: 'btn btn-success' %>
-  </div>
-
-  <div class="nav_item">
-    <%= link_to 'login', login_path, class: 'btn btn-inverse' %>
-  </div>
-<% end %>
 
