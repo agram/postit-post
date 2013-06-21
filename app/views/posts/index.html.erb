@@ -1,29 +1,7 @@
 <h5>Reviews ...</h5><br />
 
 <% @post.each do |post| %>
-  
-  <dl>
-    <dt> <%= post.title %></dt>
-    <dd> <%= link_to post.description, post.url %></dd>
-  </dl>
-  <small><div class="muted">Submitted at <%= post.created_at %> by <%= post.user.username %> to 
-      <% post.categories.each do |category| %>
-        <%= category.name %>
-      <% end %>
-    </div></small>
-  <br />
-
-  <small>
-    <!-- Show or hide edit button based on logged in user -->
-    <% if current_user == post.user %> 
-      <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-link' %>|
-    <% end %>
-    <%= link_to post_path(post) do %>
-        Comments (<%= post.comments.count %>) 
-    <% end %>
-  </small> 
-  <hr />
-
+  <%= render 'post', post: post %>
 <% end %>
 
 

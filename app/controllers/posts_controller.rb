@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
   before_filter :find_post, only: [:show, :edit, :update]
   before_filter :require_user, only: [:new, :create, :update, :edit]
-  before_filter :current_user, only: [:index] # For conditionally displaying 'edit' link
+  before_filter :current_user, only: [:index, :edit, :update] # For conditionally displaying 'edit' link and restricting action
+  before_filter :require_same_user, only: [:edit, :update]
 
   def index # Done
     @post = Post.all
@@ -42,6 +43,13 @@ class PostsController < ApplicationController
 
   def find_post
     @post= Post.find(params[:id])
+  end
+
+  def require_same_user
+    if current_user != find_post.user
+      flash[:error] = "You cannot perform this action."
+      redirect_to posts_path
+    end
   end
 
 end
