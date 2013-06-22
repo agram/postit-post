@@ -1,12 +1,6 @@
-# post_comments GET  /posts/:post_id/comments(.:format)          comments#index
-#                   POST /posts/:post_id/comments(.:format)          comments#create
-#  new_post_comment GET  /posts/:post_id/comments/new(.:format)      comments#new
-# edit_post_comment GET  /posts/:post_id/comments/:id/edit(.:format) comments#edit
-#      post_comment GET  /posts/:post_id/comments/:id(.:format)      comments#show
-#                   PUT  /posts/:post_id/comments/:id(.:format)      comments#update
-
 class CommentsController < ApplicationController
   before_filter :require_user
+  before_filter :current_user, only: [:vote]
 
   # POST /posts/:post_id/comments
   def create
@@ -24,6 +18,13 @@ class CommentsController < ApplicationController
     else
       render 'posts/show'
     end
+  end
+
+  def vote
+    @comment = Comment.find(params[:id])
+    Vote.create(voteable: @comment, user: current_user, vote: params[:vote])
+    flash[:notice] = "Your vote was counted."
+    redirect_to :back
   end
 
 end

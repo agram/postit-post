@@ -1,12 +1,36 @@
- <hr />
-<h4> <%= @post.title %> </h4>
-
-<p> <%= @post.description %> </p>
-
-<small class="muted">
-  <%= link_to @post.url, @post.url %> 
-</small> <hr />
-
+<div class="row">
+  <div class="span9"><hr />
+    <h4> <%= @post.title %> </h4>
+  
+    <p> <%= @post.description %> </p>
+  
+    <small class="muted">
+      <%= link_to @post.url, @post.url %> 
+    </small> <hr />
+  </div>
+</div>
+  
 <% if logged_in? %>
-  <%= render 'comments/comment_form' %>
+  <%= render 'shared/errors', obj: @comment %>
+    
+    <%= form_for [@post, @comment] do |f| %>
+      <div class="control-group">
+        <%= f.label :body, 'Leave a comment' %>
+          <br />
+          <div class="controls">
+            <%= f.text_area :body, rows: '3', class: 'span4', placeholder: 'Write a comment...' %>
+          </div>
+        <%= f.submit 'Post comment', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  <br />
 <% end %>
+
+<h5 class='text-warning'>
+  Comments:
+</h5>
+
+<br />
+
+<%= render 'comments/comments' %>
+ 
