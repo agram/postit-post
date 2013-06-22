@@ -1,5 +1,12 @@
 <div class="row">
+  <!-- Show category labels -->
   <div class="span9"><hr />
+    <% @post.categories.each do |category| %>
+      <span class="label">
+        <%= category.name %>
+      </span>
+    <% end %>
+
     <h4> <%= @post.title %> </h4>
   
     <p> <%= @post.description %> </p>

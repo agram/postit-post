@@ -14,17 +14,19 @@
     </dl>
   </div> <!-- End votes -->
 
-  <div class="span8">  
+  <div class="span8">
+  <% post.categories.each do |category| %>
+      <span class="label">
+        <%= category.name %>
+      </span>
+  <% end %>    
     <dl>
         <dt> <%= post.title %></dt>
         <dd> <%= link_to post.description, fix_url(post.url) %></dd>
     </dl>
 
     <small>
-      <div class="muted">Submitted at <%= display_datetime(post.created_at) %> by <%= post.user.username %> to 
-          <% post.categories.each do |category| %>
-            <%= category.name %>
-          <% end %>
+      <div class="muted">Submitted at <%= display_datetime(post.created_at) %> by <%= post.user.username %>
       </div>
     </small>
       

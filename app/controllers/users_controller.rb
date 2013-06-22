@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :find_user, only: [:edit, :update]
+  before_filter :find_user, only: [:edit, :update, :show]
+  before_filter :current_user, only: [:show]
 
   def new
     @user = User.new
@@ -17,6 +18,10 @@ class UsersController < ApplicationController
   end
 
   def edit
+  end
+
+  def show
+    @post = find_user
   end
 
   def update
