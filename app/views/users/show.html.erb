@@ -1,8 +1,37 @@
-<ul class="nav nav-tabs">
-  <li class="active">
-    <%= link_to "Home", "#" %>
-  </li>
-  <li>
-    <%= link_to "Comments", "#" %>
-  </li>
-</ul>
+<h5 class="lead">Profile: <%= @post.username %></h5>
+<hr />
+  
+<% if params[:tab] == 'comment' %>
+  <ul class="nav nav-tabs">
+      <li>
+        <%= link_to user_path(@post) do %>
+          Posts (<%= @post.posts.size %>)
+        <% end %>
+      </li>
+      <li class="active">
+        <%= link_to user_path(@post, tab: 'comment') do %>
+          Comments (<%= @post.comments.size %>)
+        <% end %>
+      </li>
+    </ul>
+    <% @post.comments.each do |comment| %>
+      <%= render 'comments/comments', comment: comment %>
+    <% end %>
+<% else %>
+  <ul class="nav nav-tabs">
+      <li class="active">
+        <%= link_to user_path(@post) do %>
+          Posts (<%= @post.posts.size %>)
+        <% end %>
+      </li>
+      <li>
+        <%= link_to user_path(@post, tab: 'comment') do %>
+          Comments (<%= @post.comments.size %>)
+        <% end %>
+      </li>
+    </ul>
+
+  <% @post.posts.each do |post| %>
+    <%= render 'posts/post', post: post %>
+  <% end %>
+<% end %>

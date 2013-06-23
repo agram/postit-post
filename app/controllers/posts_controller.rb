@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
   before_filter :find_post, only: [:show, :edit, :update, :vote]
-  before_filter :require_user, only: [:new, :create, :update, :edit]
-  before_filter :current_user, only: [:index, :edit, :update] # For conditionally displaying 'edit' link and restricting action
+  before_filter :require_user, only: [:new, :create, :update, :edit, :vote]
   before_filter :require_same_user, only: [:edit, :update]
 
   def index # Done

@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_filter :require_user
-  before_filter :current_user, only: [:vote]
+  
 
   # POST /posts/:post_id/comments
   def create

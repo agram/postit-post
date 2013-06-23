@@ -21,6 +21,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    # binding.pry
     @post = find_user
   end
 

@@ -1,16 +1,20 @@
 <div class="row">
 
-  <div class="span0"> <!-- Votes -->
+  <div class="span0 text-center"> <!-- Votes -->
+    <% if logged_in? %>
     <dl>
-      <%= link_to vote_post_path(post, vote: true), method: 'post' do %>
-        <i class="icon-chevron-up"></i>
+      <%= link_to vote_post_path(post, vote: true), method: 'post', remote: true do %>
+        <i class="icon-thumbs-up"></i>
       <% end %>
+    <% end %>
       <br />
-       votes (<%= post.total_votes %>)
+       <%= post.total_votes %> votes
       <br />
+    <% if logged_in? %>
       <%= link_to vote_post_path(post, vote: false), method: 'post' do %>
-        <i class="icon-chevron-down"></i>
+        <i class="icon-thumbs-down"></i>
       <% end %>
+    <% end %>
     </dl>
   </div> <!-- End votes -->
 
