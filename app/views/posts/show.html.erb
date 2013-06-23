@@ -12,7 +12,7 @@
     <p> <%= @post.description %> </p>
   
     <small class="muted">
-      <%= link_to @post.url, @post.url %> 
+      <%= link_to @post.url, fix_url(@post.url) %> 
     </small> <hr />
   </div>
 </div>
