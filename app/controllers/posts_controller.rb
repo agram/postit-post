@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_filter :require_same_user, only: [:edit, :update]
 
   def index # Done
-    @post = Post.all
+    @posts = Post.all
   end
 
   def show # Done
