@@ -10,6 +10,8 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     if @user.save
+      # Set the user in session then redirect.
+      session[:user_id] = @user.id
       redirect_to posts_path, notice: "You are registered."
     else
       @user.errors.delete(:password_digest)
