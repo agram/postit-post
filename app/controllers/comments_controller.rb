@@ -4,8 +4,8 @@ class CommentsController < ApplicationController
 
   # POST /posts/:post_id/comments
   def create
-    # binding.pry
-    @post = Post.find(params[:post_id])
+    binding.pry
+    @post = Post.find_by_slug(params[:post_id])
     @comment = @post.comments.build(params[:comment])
     # Above @comment is equivalent to below code snippets
     # @comment = Comment.new(params[:comment])
