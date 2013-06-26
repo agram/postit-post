@@ -39,7 +39,7 @@
 
 <br />
 
-<% @post.comments.order("created_at DESC").each do |comment| %>
+<% @post.comments.each do |comment| %>
   <%= render 'comments/comments', comment: comment %>
 <% end %>
  

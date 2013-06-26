@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_filter :require_same_user, only: [:edit, :update]
 
   def index # Done
-    @posts = Post.all
+    @posts = Post.order('created_at DESC')
   end
 
   def show # Done
