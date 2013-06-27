@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
   belongs_to :user
   has_many :post_categories
-  has_many :comments, order: ('created_at DESC')
+  has_many :comments, order: 'created_at DESC'
   has_many :categories, :through => :post_categories
   has_many :votes, as: :voteable
 

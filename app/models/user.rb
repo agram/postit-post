@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :posts, order: ('created_at DESC')
-  has_many :comments, order: ('created_at DESC')
+  has_many :posts, order: 'created_at DESC'
+  has_many :comments, order: 'created_at DESC'
 
   has_secure_password
 
