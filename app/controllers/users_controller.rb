@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   def show
     # binding.pry
-    @post = find_user # Should be @user = find_user but used @post just to match ivar in posts and comments partials.
+    @user = find_user
   end
 
   def update
