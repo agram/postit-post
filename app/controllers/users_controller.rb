@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   def show
     # binding.pry
-    @user = find_user
+    @post = find_user
   end
 
   def update
