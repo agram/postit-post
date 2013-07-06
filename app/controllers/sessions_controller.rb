@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
-  def new  
+  def new
+    redirect_to posts_path if current_user  
   end
 
   def create
