@@ -15,6 +15,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to post_path(@post), notice: "Your comment was added."
     else
+      @comments = @post.comments.reload
       render 'posts/show'
     end
   end
