@@ -6,7 +6,8 @@ class Post < ActiveRecord::Base
   has_many :votes, as: :voteable
 
   validates :title, presence: true, length: {minimum: 2}
-  validates :description, presence: true
+  validates :description, presence: true, length: {maximum: 200, 
+    too_long: "%{count} characters is the maximum allowed."}
   validates :url, presence: true
 
   after_validation :generate_slug
